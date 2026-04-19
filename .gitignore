@@ -1,0 +1,39 @@
+# virtual environments
+venv/
+venv-training/
+venv-app/
+
+# dvc-managed data and models
+data/raw/
+data/processed/
+models/best_model.pt
+
+# mitbih download cache
+mitbih_data/
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# jupyter
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# mlflow
+mlruns/
+
+# environment variables
+.env
+.env.*
+
+# mac
+.DS_Store
+
+# ide
+.vscode/
+.idea/
