@@ -37,7 +37,3 @@ mlruns/
 # ide
 .vscode/
 .idea/
-
-# Creds
-gdrive-credentials.json
-gdrive-credentials.json
