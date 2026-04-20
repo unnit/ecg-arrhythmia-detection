@@ -6,8 +6,8 @@ An end-to-end MLOps pipeline that detects cardiac arrhythmias from ECG signals
 using a CNN-BiLSTM architecture with an attention mechanism. Achieves **99% accuracy 
 and 0.98 macro F1** across 5 arrhythmia classes on the MIT-BIH Arrhythmia Database.
 
-**Live Demo** → [HuggingFace Spaces](#) *(link to be added after deployment)*  
-**Model Weights** → [HuggingFace Hub](https://huggingface.co/dheerajthuvara/ecg-arrhythmia-detection)
+**Live Demo** → [HuggingFace Spaces](https://huggingface.co/spaces/dheerajthuvara/ecg-arrhythmia-demo)  
+**Model Weights** → [HuggingFace Hub](https://huggingface.co/dheerajthuvara/ecg-arrhythmia-detection)  
 **Dataset** → [HuggingFace Dataset](https://huggingface.co/datasets/dheerajthuvara/ecg-arrhythmia-data)
 
 ---
@@ -20,15 +20,7 @@ Cardiac arrhythmias affect millions of people worldwide and are a leading cause 
 
 ## Pipeline Architecture
 
-```
-MIT-BIH Dataset → Signal Preprocessing → DVC Versioning
-      ↓
-CNN-BiLSTM Model → MLflow Tracking → Model Registry
-      ↓
-Docker Container → FastAPI Service → Gradio Demo
-      ↓
-GitHub Actions CI/CD + Evidently Drift Monitoring
-```
+![Pipeline Architecture](reports/figures/ecg_mlops_pipeline.svg)
 
 ---
 
