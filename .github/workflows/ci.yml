@@ -1,0 +1,82 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('app/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pytest scipy numpy scikit-learn torch
+
+      - name: run unit tests
+        run: pytest tests/ -v
+
+  docker:
+    name: build and verify docker
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: set up docker buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: build docker image
+        run: |
+          docker build -t ecg-arrhythmia:ci ./app
+
+      - name: start container
+        run: |
+          docker run -d \
+            --name ecg-api \
+            -p 8000:8000 \
+            ecg-arrhythmia:ci
+          echo "Waiting for container to start..."
+          sleep 15
+
+      - name: verify health endpoint
+        run: |
+          curl --retry 5 --retry-delay 5 --retry-connrefused \
+            http://localhost:8000/health
+
+      - name: check health response
+        run: |
+          response=$(curl -s http://localhost:8000/health)
+          echo "Health response: $response"
+          echo $response | python3 -c "
+          import sys, json
+          data = json.load(sys.stdin)
+          assert data['status'] == 'healthy', f'Expected healthy, got {data[\"status\"]}'
+          print('Health check passed.')
+          "
+
+      - name: stop container
+        if: always()
+        run: docker stop ecg-api && docker rm ecg-api
