@@ -2,7 +2,9 @@
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue) ![PyTorch](https://img.shields.io/badge/PyTorch-2.x-orange) ![MLflow](https://img.shields.io/badge/MLflow-tracking-blue) ![DVC](https://img.shields.io/badge/DVC-data--versioning-purple) ![FastAPI](https://img.shields.io/badge/FastAPI-inference-teal) ![License](https://img.shields.io/badge/License-MIT-green)
 
-An end-to-end MLOps pipeline that detects cardiac arrhythmias from ECG signals using a CNN-BiLSTM architecture with an attention mechanism. Trained on the MIT-BIH Arrhythmia Database, with full data versioning, experiment tracking, containerized inference, and a live interactive demo.
+An end-to-end MLOps pipeline that detects cardiac arrhythmias from ECG signals 
+using a CNN-BiLSTM architecture with an attention mechanism. Achieves **99% accuracy 
+and 0.98 macro F1** across 5 arrhythmia classes on the MIT-BIH Arrhythmia Database.
 
 **Live Demo** → [HuggingFace Spaces](#) *(link to be added after deployment)*  
 **Model Weights** → [HuggingFace Hub](https://huggingface.co/dheerajthuvara/ecg-arrhythmia-detection)
@@ -65,14 +67,16 @@ Class imbalance is handled with **SMOTE** oversampling on the training split onl
 
 | Class | Precision | Recall | F1 |
 |---|---|---|---|
-| N — Normal | - | - | - |
-| L — LBBB | - | - | - |
-| R — RBBB | - | - | - |
-| V — PVC | - | - | - |
-| A — APC | - | - | - |
-| **Macro avg** | - | - | - |
+| A — APC | 0.91 | 0.92 | 0.91 |
+| L — LBBB | 1.00 | 1.00 | 1.00 |
+| N — Normal | 1.00 | 0.99 | 0.99 |
+| R — RBBB | 1.00 | 0.99 | 1.00 |
+| V — PVC | 0.98 | 0.99 | 0.98 |
+| **Macro avg** | **0.98** | **0.98** | **0.98** |
+| **Weighted avg** | **0.99** | **0.99** | **0.99** |
 
-*Results will be populated after training run is complete.*
+**Test set size:** 21,971 beats · **Overall accuracy:** 99%
+
 
 ### Training curves
 ![Training curves](reports/figures/training_curves.png)
@@ -129,13 +133,15 @@ ecg-arrhythmia/
 ## Quickstart
 
 ### 1. Clone and pull data
+### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/ecg-arrhythmia.git
-cd ecg-arrhythmia
-pip install dvc 'dvc[gdrive]'
-dvc pull
+git clone https://github.com/dheerajthuvara/ecg-arrhythmia-detection.git
+cd ecg-arrhythmia-detection
 ```
+
+Raw data downloads automatically when you run cell 4 of the notebook via `wfdb`.  
+Processed data is available on [HuggingFace](https://huggingface.co/dheerajthuvara/ecg-arrhythmia-detection).
 
 ### 2. Set up environment and run notebook
 
