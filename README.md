@@ -80,6 +80,18 @@ Class imbalance is handled with **SMOTE** oversampling on the training split onl
 ### Rhythm strip visualization
 ![Rhythm strip](reports/figures/rhythm_strip.png)
 
+## Drift Monitoring
+
+Evidently AI report comparing training vs test signal distributions.
+
+![Drift Report](reports/drift/drift_report.png)
+
+Run locally:
+```bash
+pip install -r monitoring/requirements.txt
+python monitoring/drift_report.py
+```
+
 ---
 
 ## MLOps Stack

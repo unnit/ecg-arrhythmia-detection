@@ -37,3 +37,4 @@ mlruns/
 # ide
 .vscode/
 .idea/
+reports/drift/*.html
