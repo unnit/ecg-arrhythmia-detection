@@ -8,6 +8,7 @@ and 0.98 macro F1** across 5 arrhythmia classes on the MIT-BIH Arrhythmia Databa
 
 **Live Demo** → [HuggingFace Spaces](#) *(link to be added after deployment)*  
 **Model Weights** → [HuggingFace Hub](https://huggingface.co/dheerajthuvara/ecg-arrhythmia-detection)
+**Dataset** → [HuggingFace Dataset](https://huggingface.co/datasets/dheerajthuvara/ecg-arrhythmia-data)
 
 ---
 
@@ -141,7 +142,7 @@ cd ecg-arrhythmia-detection
 ```
 
 Raw data downloads automatically when you run cell 4 of the notebook via `wfdb`.  
-Processed data is available on [HuggingFace](https://huggingface.co/dheerajthuvara/ecg-arrhythmia-detection).
+Processed data is available on [HuggingFace Dataset](https://huggingface.co/datasets/dheerajthuvara/ecg-arrhythmia-data).
 
 ### 2. Set up environment and run notebook
 
