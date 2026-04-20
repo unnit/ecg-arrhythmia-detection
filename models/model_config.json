@@ -1,0 +1,42 @@
+{
+  "window_size": 180,
+  "batch_size": 256,
+  "epochs": 50,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "cnn_filters": [
+    32,
+    64,
+    128
+  ],
+  "kernel_size": 5,
+  "lstm_hidden": 128,
+  "lstm_layers": 2,
+  "dropout": 0.3,
+  "num_classes": 5,
+  "label_map": {
+    "N": "N",
+    "L": "L",
+    "R": "R",
+    "V": "V",
+    "/": "V",
+    "A": "A",
+    "a": "A",
+    "e": "N",
+    "j": "N",
+    "n": "N",
+    "E": "V",
+    "F": "V",
+    "f": "N",
+    "Q": "N",
+    "!": "V"
+  },
+  "classes": [
+    "N",
+    "L",
+    "R",
+    "V",
+    "A"
+  ],
+  "mlflow_experiment": "ecg-arrhythmia-detection"
+}
